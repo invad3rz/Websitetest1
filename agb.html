@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGB - Wedulit Natursteinhandel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --stone: #4a4a4a; --stone-light: #6b6b6b; --cream: #f5f3ef;
+            --warm: #e8e4dc; --gold: #b8956c; --gold-dark: #9a7a55;
+            --white: #ffffff; --black: #1a1a1a;
+        }
+        body { font-family: 'Source Sans 3', sans-serif; line-height: 1.7; color: var(--stone); background: var(--white); }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 500; letter-spacing: -0.02em; }
+        
+        .navbar { position: fixed; top: 0; left: 0; right: 0; background: var(--white); z-index: 1000; }
+        .navbar.scrolled { box-shadow: 0 1px 0 rgba(0,0,0,0.08); }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; text-decoration: none; }
+        .logo img { height: 45px; }
+        .nav-links { display: flex; gap: 3rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--stone); font-size: 0.9rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: var(--stone); margin: 6px 0; }
+
+        .page-header { padding: 10rem 3rem 5rem; background: var(--cream); }
+        .page-header-content { max-width: 1400px; margin: 0 auto; }
+        .page-header .section-tag { display: inline-block; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+        .page-header h1 { font-size: 3.2rem; margin-bottom: 1rem; color: var(--black); }
+        .page-header p { font-size: 1.15rem; color: var(--stone-light); max-width: 600px; }
+
+        .section { padding: 5rem 3rem; }
+        .container { max-width: 900px; margin: 0 auto; }
+
+        .legal-content { }
+        .legal-section { margin-bottom: 3rem; padding-bottom: 3rem; border-bottom: 1px solid var(--warm); }
+        .legal-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .legal-section h2 { font-size: 1.4rem; margin-bottom: 1rem; color: var(--black); }
+        .legal-section h3 { font-size: 1.1rem; margin: 1.5rem 0 0.75rem; color: var(--stone); }
+        .legal-section p { margin-bottom: 1rem; color: var(--stone-light); }
+        .legal-section ol { margin-left: 1.5rem; margin-bottom: 1rem; color: var(--stone-light); }
+        .legal-section ol li { margin-bottom: 0.5rem; }
+
+        .footer { background: var(--black); color: var(--white); padding: 5rem 3rem 2rem; }
+        .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; padding-bottom: 4rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .footer-brand .logo-text { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; letter-spacing: 0.1em; }
+        .footer-brand p { color: rgba(255,255,255,0.6); margin-top: 1rem; font-size: 0.95rem; }
+        .footer h4 { font-family: 'Source Sans 3', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; color: var(--gold); }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.95rem; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-bottom { max-width: 1400px; margin: 0 auto; padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+        .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
+        .footer-bottom a:hover { color: var(--white); }
+
+        @media (max-width: 768px) {
+            .nav-container { padding: 1rem 1.5rem; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); flex-direction: column; padding: 2rem; gap: 1.5rem; border-top: 1px solid var(--warm); }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+            .page-header { padding: 8rem 1.5rem 3rem; }
+            .page-header h1 { font-size: 2.4rem; }
+            .section { padding: 3rem 1.5rem; }
+            .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo"><img src="wedulit-logo.jpg" alt="Wedulit"></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Start</a></li>
+                <li><a href="materialien.html">Materialien</a></li>
+                <li><a href="referenzen.html">Referenzen</a></li>
+                <li><a href="historie.html">Historie</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="page-header-content">
+            <span class="section-tag">Rechtliches</span>
+            <h1>Allgemeine Geschäftsbedingungen</h1>
+            <p>Unsere Geschäftsbedingungen für die Zusammenarbeit mit Ihnen.</p>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="legal-content">
+                <div class="legal-section">
+                    <h2>§ 1 Allgemeines</h2>
+                    <p>Maßgebend für alle Rechtsbeziehungen zwischen dem Auftraggeber und der Wedulit Natursteinhandel sind ausschließlich diese Allgemeinen Verkaufs- und Lieferungsbedingungen. Abweichende Vereinbarungen sind nur wirksam, wenn sie schriftlich bestätigt wurden.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>§ 2 Angebote</h2>
+                    <p>Soweit nicht ausdrücklich anders angegeben, sind unsere Angebote freibleibend. Zwischenverkauf ist vorbehalten.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>§ 3 Preise</h2>
+                    <p>Bei Verträgen mit Lieferfristen von über 4 Monaten gelten die am Liefertermin gültigen Preise, es sei denn, dass im einzelnen Fall eine Festpreisvereinbarung ausdrücklich schriftlich bestätigt ist.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>§ 4 Aufrechnung</h2>
+                    <p>Eine Aufrechnung mit Gegenansprüchen des Käufers oder das Zurückbehalten von Zahlungen wegen solcher Ansprüche ist nur insoweit zulässig, als die Gegenansprüche unbestritten oder rechtskräftig festgestellt sind.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>§ 5 Lieferfrist</h2>
+                    <p>Lieferfristen beginnen erst nach Klärung aller technischen Fragen. Erfüllungsort für alle Verpflichtungen aus dem Vertrag ist Neumünster. Verpackungskosten gehen zu Lasten des Käufers.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>§ 6 Gefahrübergang</h2>
+                    <p>Die Gefahr geht mit der Absendung der Lieferungen auf den Käufer über, auch wenn frachtfreie Lieferung vereinbart ist. Auf Wunsch und Kosten des Käufers werden die Lieferungen versichert.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>§ 7 Eigentumsvorbehalt</h2>
+                    <p>Die gelieferten Waren bleiben bis zur vollständigen Bezahlung unser Eigentum. Der Käufer hat uns unverzüglich zu informieren, wenn und soweit Zugriffe Dritter auf die Vorbehaltsware erfolgen.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>§ 8 Gewährleistung</h2>
+                    <p>Die vom Käufer erhobene Mängelrüge ist unverzüglich schriftlich zu begründen. Reklamationen und Schadensforderungen werden nur anerkannt, wenn sie innerhalb von 8 Tagen nach Eingang der Ware erhoben werden. Soweit sich Reklamationen als berechtigt erweisen, werden nach Wahl der Wedulit Natursteinhandel die Waren nachgebessert oder ersetzt. Bei begründeten Reklamationen haftet die Wedulit Natursteinhandel in Höhe des Warenwertes.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>§ 9 Haftung</h2>
+                    <p>Schadenersatzansprüche des Käufers aus positiver Vertragsverletzung und auch aus unerlaubter Handlung sind ausgeschlossen, soweit sie über den unmittelbaren Schaden hinausgehen. Weitergehende Schadenersatzansprüche des Käufers, insbesondere Ansprüche auf Ersatz von entgangenem Gewinn oder sonstigen Vermögensschäden, sind ausgeschlossen. Diese Einschränkungen gelten nicht, soweit in Fällen des Vorsatzes, bei einem Verschulden des Erfüllungsgehilfen, bei der Verletzung des Lebens, des Körpers oder der Gesundheit, bei der Übernahme einer Beschaffenheitsgarantie oder bei einer Verletzung wesentlicher Vertragspflichten gehaftet wird.</p>
+                </div>
+
+                <div class="legal-section">
+                    <h2>§ 10 Abweichung vom Auftrag</h2>
+                    <p>Bei Aufträgen, deren Erledigung nach Maßen zu erfolgen hat, behalten wir uns eine Überschreitung oder Unterschreitung bis zu 10% vor. Wir haben Anspruch auf Vergütung der tatsächlich gelieferten Menge.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo-text">WEDULIT</div>
+                <p>Ihr Partner für Naturstein- und Stahlbau seit 1966.</p>
+            </div>
+            <div>
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Startseite</a></li>
+                    <li><a href="materialien.html">Materialien</a></li>
+                    <li><a href="referenzen.html">Referenzen</a></li>
+                    <li><a href="historie.html">Historie</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Kontakt</h4>
+                <ul class="footer-links">
+                    <li><a href="kontakt.html">Kontaktformular</a></li>
+                    <li><a href="anfahrt.html">Anfahrt</a></li>
+                    <li><a href="tel:+4943218031">04321 / 8031</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Rechtliches</h4>
+                <ul class="footer-links">
+                    <li><a href="agb.html">AGB</a></li>
+                    <li><a href="impressum.html">Impressum</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Wedulit Natursteinhandel</p>
+            <p><a href="impressum.html">Impressum</a> · <a href="agb.html">AGB</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
+        window.addEventListener('scroll', () => { document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50); });
+    </script>
+</body>
+</html>

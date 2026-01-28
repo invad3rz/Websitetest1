@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historie - Wedulit Natursteinhandel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --stone: #4a4a4a; --stone-light: #6b6b6b; --cream: #f5f3ef;
+            --warm: #e8e4dc; --gold: #b8956c; --gold-dark: #9a7a55;
+            --white: #ffffff; --black: #1a1a1a;
+        }
+        body { font-family: 'Source Sans 3', sans-serif; line-height: 1.7; color: var(--stone); background: var(--white); }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 500; letter-spacing: -0.02em; }
+        
+        .navbar { position: fixed; top: 0; left: 0; right: 0; background: var(--white); z-index: 1000; }
+        .navbar.scrolled { box-shadow: 0 1px 0 rgba(0,0,0,0.08); }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; text-decoration: none; }
+        .logo img { height: 45px; }
+        .nav-links { display: flex; gap: 3rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--stone); font-size: 0.9rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: var(--stone); margin: 6px 0; }
+
+        .page-header { padding: 10rem 3rem 5rem; background: var(--cream); }
+        .page-header-content { max-width: 1400px; margin: 0 auto; }
+        .page-header .section-tag { display: inline-block; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+        .page-header h1 { font-size: 3.2rem; margin-bottom: 1rem; color: var(--black); }
+        .page-header p { font-size: 1.15rem; color: var(--stone-light); max-width: 600px; }
+
+        .section { padding: 6rem 3rem; }
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        .timeline { position: relative; }
+        .timeline::before { content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--warm); transform: translateX(-50%); }
+        
+        .timeline-item { position: relative; margin-bottom: 6rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-item::before { content: ''; position: absolute; left: 50%; top: 50%; width: 12px; height: 12px; background: var(--gold); border-radius: 50%; transform: translate(-50%, -50%); z-index: 1; }
+        
+        .timeline-year { font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 400; color: var(--warm); text-align: right; padding-right: 4rem; }
+        .timeline-content { padding-left: 4rem; }
+        .timeline-content h3 { font-size: 1.5rem; margin-bottom: 1rem; color: var(--black); }
+        .timeline-content p { color: var(--stone-light); font-size: 1.05rem; }
+
+        .timeline-item:nth-child(even) .timeline-year { order: 2; text-align: left; padding-right: 0; padding-left: 4rem; }
+        .timeline-item:nth-child(even) .timeline-content { order: 1; padding-left: 0; padding-right: 4rem; text-align: right; }
+
+        .quote-section { background: var(--black); color: var(--white); padding: 6rem 3rem; text-align: center; }
+        .quote-section blockquote { max-width: 800px; margin: 0 auto; font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 400; font-style: italic; line-height: 1.5; }
+        .quote-section cite { display: block; margin-top: 2rem; font-family: 'Source Sans 3', sans-serif; font-size: 0.9rem; font-style: normal; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; }
+
+        .footer { background: var(--black); color: var(--white); padding: 5rem 3rem 2rem; }
+        .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; padding-bottom: 4rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .footer-brand .logo-text { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; letter-spacing: 0.1em; }
+        .footer-brand p { color: rgba(255,255,255,0.6); margin-top: 1rem; font-size: 0.95rem; }
+        .footer h4 { font-family: 'Source Sans 3', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; color: var(--gold); }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.95rem; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-bottom { max-width: 1400px; margin: 0 auto; padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+        .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
+        .footer-bottom a:hover { color: var(--white); }
+
+        @media (max-width: 768px) {
+            .nav-container { padding: 1rem 1.5rem; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); flex-direction: column; padding: 2rem; gap: 1.5rem; border-top: 1px solid var(--warm); }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+            .page-header { padding: 8rem 1.5rem 3rem; }
+            .page-header h1 { font-size: 2.4rem; }
+            .section { padding: 3rem 1.5rem; }
+            .timeline::before { left: 0; }
+            .timeline-item { grid-template-columns: 1fr; gap: 1rem; padding-left: 2rem; }
+            .timeline-item::before { left: 0; top: 0; transform: translateX(-50%); }
+            .timeline-year, .timeline-item:nth-child(even) .timeline-year { font-size: 2.5rem; text-align: left; padding: 0; order: 1; }
+            .timeline-content, .timeline-item:nth-child(even) .timeline-content { padding: 0; text-align: left; order: 2; }
+            .quote-section blockquote { font-size: 1.4rem; }
+            .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo"><img src="wedulit-logo.jpg" alt="Wedulit"></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Start</a></li>
+                <li><a href="materialien.html">Materialien</a></li>
+                <li><a href="referenzen.html">Referenzen</a></li>
+                <li><a href="historie.html" class="active">Historie</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="page-header-content">
+            <span class="section-tag">Unsere Geschichte</span>
+            <h1>Historie</h1>
+            <p>Seit über 55 Jahren steht der Name Wedulit für Qualität und Zuverlässigkeit im Natursteinhandel.</p>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1966</div>
+                    <div class="timeline-content">
+                        <h3>Die Gründung</h3>
+                        <p>Helmut Wende eröffnet die Natursteinhandlung in Neumünster. Mit Leidenschaft für edle Steine und handwerklicher Präzision legt er den Grundstein für ein Familienunternehmen.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1978</div>
+                    <div class="timeline-content">
+                        <h3>Erweiterung des Betriebs</h3>
+                        <p>Der Betrieb wächst stetig. Durch Investitionen in modernste Technik und die Erweiterung des Materialangebots kann Wedulit immer mehr Kunden bedienen.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1986</div>
+                    <div class="timeline-content">
+                        <h3>Neue Generation</h3>
+                        <p>Gabriele Wende übernimmt die Geschäftsführung und führt das Unternehmen erfolgreich in die zweite Generation. Die Tradition wird fortgesetzt, während neue Impulse gesetzt werden.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">Heute</div>
+                    <div class="timeline-content">
+                        <h3>Tradition trifft Moderne</h3>
+                        <p>Mit über 55 Jahren Erfahrung verbindet Wedulit traditionelles Handwerk mit modernsten Fertigungsmethoden. Vom klassischen Grabstein bis zur individuellen Küchenarbeitsplatte – Qualität bleibt unser Markenzeichen.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quote-section">
+        <blockquote>
+            „Stein ist geduldig. Wir auch. Denn Qualität braucht Zeit."
+            <cite>Gabriele Wende, Geschäftsführerin</cite>
+        </blockquote>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo-text">WEDULIT</div>
+                <p>Ihr Partner für Naturstein- und Stahlbau seit 1966.</p>
+            </div>
+            <div>
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Startseite</a></li>
+                    <li><a href="materialien.html">Materialien</a></li>
+                    <li><a href="referenzen.html">Referenzen</a></li>
+                    <li><a href="historie.html">Historie</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Kontakt</h4>
+                <ul class="footer-links">
+                    <li><a href="kontakt.html">Kontaktformular</a></li>
+                    <li><a href="anfahrt.html">Anfahrt</a></li>
+                    <li><a href="tel:+4943218031">04321 / 8031</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Rechtliches</h4>
+                <ul class="footer-links">
+                    <li><a href="agb.html">AGB</a></li>
+                    <li><a href="impressum.html">Impressum</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Wedulit Natursteinhandel</p>
+            <p><a href="impressum.html">Impressum</a> · <a href="agb.html">AGB</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
+        window.addEventListener('scroll', () => { document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50); });
+    </script>
+</body>
+</html>

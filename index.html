@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedulit Natursteinhandel - Neumünster</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --stone: #4a4a4a;
+            --stone-light: #6b6b6b;
+            --cream: #f5f3ef;
+            --warm: #e8e4dc;
+            --gold: #b8956c;
+            --gold-dark: #9a7a55;
+            --white: #ffffff;
+            --black: #1a1a1a;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            line-height: 1.7;
+            color: var(--stone);
+            background-color: var(--white);
+            font-weight: 400;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            z-index: 1000;
+            transition: box-shadow 0.4s ease;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 1px 0 rgba(0,0,0,0.08);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 45px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--stone);
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--gold);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--stone);
+            margin: 6px 0;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--cream);
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 55%;
+            height: 100%;
+            background: url('https://www.wedulit.de/uploads/pics/startseite-unser-handwerk.jpg') center/cover no-repeat;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 55%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--cream) 0%, var(--cream) 20%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            max-width: 550px;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 2rem;
+        }
+
+        .hero-text h1 {
+            font-size: 3.8rem;
+            line-height: 1.1;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text p {
+            font-size: 1.15rem;
+            color: var(--stone);
+            margin-bottom: 2.5rem;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--white);
+            border: 2px solid var(--gold);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-dark);
+            border-color: var(--gold-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--stone);
+            border: 2px solid var(--stone);
+        }
+
+        .btn-outline:hover {
+            background: var(--stone);
+            color: var(--white);
+        }
+
+        .section {
+            padding: 7rem 3rem;
+        }
+
+        .section-dark {
+            background: var(--stone);
+            color: var(--white);
+        }
+
+        .section-cream {
+            background: var(--cream);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-header.center {
+            text-align: center;
+        }
+
+        .section-tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--stone-light);
+            max-width: 600px;
+        }
+
+        .section-header.center p {
+            margin: 0 auto;
+        }
+
+        .section-dark .section-header p {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+
+        .service-item {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .service-item h3 {
+            font-size: 1.1rem;
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-item p {
+            font-size: 0.9rem;
+            color: var(--stone-light);
+        }
+
+        .service-divider {
+            width: 40px;
+            height: 2px;
+            background: var(--gold);
+            margin: 0 auto 1rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 1.5rem 1.5rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: var(--white);
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .gallery-caption h3 {
+            font-size: 1rem;
+            font-family: 'Source Sans 3', sans-serif;
+            font-weight: 500;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            display: block;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: 20px;
+            bottom: 20px;
+            border: 2px solid var(--gold);
+            z-index: -1;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .about-text p {
+            color: rgba(255,255,255,0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2.5rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .stat h3 {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            margin: 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info > p {
+            color: var(--stone-light);
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .contact-item-icon {
+            width: 20px;
+            color: var(--gold);
+            flex-shrink: 0;
+            font-weight: 600;
+        }
+
+        .contact-item h4 {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item p {
+            font-size: 0.95rem;
+            color: var(--stone-light);
+        }
+
+        .contact-item a {
+            color: var(--gold);
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        .hours-card {
+            background: var(--white);
+            padding: 2.5rem;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.06);
+        }
+
+        .hours-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hours-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--warm);
+        }
+
+        .hours-row:last-of-type {
+            border-bottom: none;
+        }
+
+        .hours-row .day {
+            font-weight: 500;
+        }
+
+        .hours-row .time {
+            color: var(--stone-light);
+        }
+
+        .hours-note {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: var(--cream);
+            font-size: 0.9rem;
+            color: var(--stone-light);
+        }
+
+        .footer {
+            background: var(--black);
+            color: var(--white);
+            padding: 5rem 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-brand .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.6);
+            margin-top: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .footer h4 {
+            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: var(--gold);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .footer-bottom a {
+            color: rgba(255,255,255,0.4);
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            color: var(--white);
+        }
+
+        @media (max-width: 1024px) {
+            .hero::before, .hero::after {
+                display: none;
+            }
+            .hero-text h1 {
+                font-size: 3rem;
+            }
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .about-grid, .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem 1.5rem;
+            }
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-top: 1px solid var(--warm);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .section {
+                padding: 4rem 1.5rem;
+            }
+            .hero-text h1 {
+                font-size: 2.4rem;
+            }
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            .services-grid, .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-row {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="wedulit-logo.jpg" alt="Wedulit">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Start</a></li>
+                <li><a href="materialien.html">Materialien</a></li>
+                <li><a href="referenzen.html">Referenzen</a></li>
+                <li><a href="historie.html">Historie</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <span class="hero-tag">Seit 1966 in Neumünster</span>
+                <h1>Naturstein & Stahlbau aus Meisterhand</h1>
+                <p>Mit über 58 Jahren Erfahrung setzen wir Ihre individuellen Wünsche im Bereich Naturstein- und Stahlbau in höchster Qualität um.</p>
+                <div class="hero-cta">
+                    <a href="kontakt.html" class="btn btn-primary">Kontakt</a>
+                    <a href="referenzen.html" class="btn btn-outline">Referenzen</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">Leistungen</span>
+                <h2>Alles aus einer Hand</h2>
+                <p>Wir bieten Ihnen ein umfassendes Leistungsspektrum – von der Beratung bis zur Montage.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-item">
+                    <div class="service-divider"></div>
+                    <h3>Natursteinbeläge</h3>
+                    <p>Böden & Wandverkleidungen</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-divider"></div>
+                    <h3>Küchenarbeitsplatten</h3>
+                    <p>Granit, Marmor & Quarz</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-divider"></div>
+                    <h3>Treppen & Stahlbau</h3>
+                    <p>Innen & Außen</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-divider"></div>
+                    <h3>Fensterbänke</h3>
+                    <p>Nach Maß gefertigt</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-divider"></div>
+                    <h3>Eingangspodeste</h3>
+                    <p>Repräsentativ & robust</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-divider"></div>
+                    <h3>Waschtische</h3>
+                    <p>Individuell gestaltet</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-divider"></div>
+                    <h3>Geländer</h3>
+                    <p>Edelstahl & Stahl</p>
+                </div>
+                <div class="service-item">
+                    <div class="service-divider"></div>
+                    <h3>Beratung & Aufmaß</h3>
+                    <p>Vor Ort Service</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-cream">
+        <div class="container">
+            <div class="section-header center">
+                <span class="section-tag">Einblicke</span>
+                <h2>Unsere Arbeiten</h2>
+                <p>Qualität, die man sieht – ein Auszug aus unseren Projekten.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://www.wedulit.de/uploads/pics/startseite-unser-handwerk.jpg" alt="Unser Handwerk">
+                    <div class="gallery-caption"><h3>Unser Handwerk</h3></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://www.wedulit.de/typo3temp/pics/Treppe_Microkorn_7a58029d42.jpg" alt="Treppe">
+                    <div class="gallery-caption"><h3>Natursteintreppe</h3></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://www.wedulit.de/typo3temp/pics/Belvedere_Tropical_3_cm_poliert_1_01_8beb360af6.jpg" alt="Belvedere Tropical">
+                    <div class="gallery-caption"><h3>Belvedere Tropical</h3></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-dark">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="https://www.wedulit.de/typo3temp/pics/Treppe_Microkorn_7a58029d42.jpg" alt="Naturstein">
+                </div>
+                <div class="about-text">
+                    <span class="section-tag">Über uns</span>
+                    <h2>Tradition trifft Handwerk</h2>
+                    <p>Seit der Gründung im Jahre 1966 steht Wedulit Natursteinhandel für die Umsetzung individueller Kundenwünsche. Unsere kompetenten Mitarbeiter verbinden traditionelles Handwerk mit modernen Techniken.</p>
+                    <p>Zufriedene Privat- und Firmenkunden in ganz Deutschland vertrauen auf unseren Service und unsere Qualität.</p>
+                    <div class="stats-row">
+                        <div class="stat">
+                            <h3>58+</h3>
+                            <p>Jahre Erfahrung</p>
+                        </div>
+                        <div class="stat">
+                            <h3>1000+</h3>
+                            <p>Projekte</p>
+                        </div>
+                        <div class="stat">
+                            <h3>100%</h3>
+                            <p>Qualität</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-cream">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <span class="section-tag">Kontakt</span>
+                    <h2>Sprechen Sie uns an</h2>
+                    <p>Wir freuen uns auf Ihre Anfrage und beraten Sie gerne persönlich.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <span class="contact-item-icon">→</span>
+                            <div>
+                                <h4>Telefon</h4>
+                                <p><a href="tel:+4943218031">04321 / 8031</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-item-icon">→</span>
+                            <div>
+                                <h4>E-Mail</h4>
+                                <p><a href="mailto:info@wedulit.de">info@wedulit.de</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-item-icon">→</span>
+                            <div>
+                                <h4>Adresse</h4>
+                                <p>Oderstraße 50, 24539 Neumünster</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-item-icon">→</span>
+                            <div>
+                                <h4>Anfahrt</h4>
+                                <p><a href="anfahrt.html">So finden Sie uns →</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hours-card">
+                    <h3>Öffnungszeiten</h3>
+                    <div class="hours-row">
+                        <span class="day">Montag – Donnerstag</span>
+                        <span class="time">8:30 – 16:00</span>
+                    </div>
+                    <div class="hours-row">
+                        <span class="day">Freitag</span>
+                        <span class="time">8:30 – 15:00</span>
+                    </div>
+                    <div class="hours-row">
+                        <span class="day">Samstag – Sonntag</span>
+                        <span class="time">Geschlossen</span>
+                    </div>
+                    <div class="hours-note">
+                        Termine außerhalb der Öffnungszeiten nach Vereinbarung möglich.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo-text">WEDULIT</div>
+                <p>Ihr Partner für Naturstein- und Stahlbau seit 1966. Qualität und Kundenzufriedenheit aus Neumünster.</p>
+            </div>
+            <div>
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Startseite</a></li>
+                    <li><a href="materialien.html">Materialien</a></li>
+                    <li><a href="referenzen.html">Referenzen</a></li>
+                    <li><a href="historie.html">Historie</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Leistungen</h4>
+                <ul class="footer-links">
+                    <li><a href="referenzen.html">Natursteinbeläge</a></li>
+                    <li><a href="referenzen.html">Küchenarbeitsplatten</a></li>
+                    <li><a href="referenzen.html">Stahltreppen</a></li>
+                    <li><a href="referenzen.html">Waschtische</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Rechtliches</h4>
+                <ul class="footer-links">
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                    <li><a href="anfahrt.html">Anfahrt</a></li>
+                    <li><a href="agb.html">AGB</a></li>
+                    <li><a href="impressum.html">Impressum</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Wedulit Natursteinhandel</p>
+            <p><a href="impressum.html">Impressum</a> · <a href="agb.html">AGB</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+        window.addEventListener('scroll', () => {
+            document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+    </script>
+</body>
+</html>

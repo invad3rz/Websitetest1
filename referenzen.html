@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referenzen - Wedulit Natursteinhandel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --stone: #4a4a4a; --stone-light: #6b6b6b; --cream: #f5f3ef;
+            --warm: #e8e4dc; --gold: #b8956c; --gold-dark: #9a7a55;
+            --white: #ffffff; --black: #1a1a1a;
+        }
+        body { font-family: 'Source Sans 3', sans-serif; line-height: 1.7; color: var(--stone); background: var(--white); }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 500; letter-spacing: -0.02em; }
+        
+        .navbar { position: fixed; top: 0; left: 0; right: 0; background: var(--white); z-index: 1000; }
+        .navbar.scrolled { box-shadow: 0 1px 0 rgba(0,0,0,0.08); }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; text-decoration: none; }
+        .logo img { height: 45px; }
+        .nav-links { display: flex; gap: 3rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--stone); font-size: 0.9rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: var(--stone); margin: 6px 0; }
+
+        .page-header { padding: 10rem 3rem 5rem; background: var(--cream); }
+        .page-header-content { max-width: 1400px; margin: 0 auto; }
+        .page-header .section-tag { display: inline-block; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+        .page-header h1 { font-size: 3.2rem; margin-bottom: 1rem; color: var(--black); }
+        .page-header p { font-size: 1.15rem; color: var(--stone-light); max-width: 600px; }
+
+        .section { padding: 5rem 3rem; }
+        .section-alt { background: var(--cream); }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .section-header { margin-bottom: 2rem; }
+        .section-header h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+        .section-header p { color: var(--stone-light); max-width: 700px; }
+
+        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+        .gallery-item { position: relative; aspect-ratio: 4/3; overflow: hidden; cursor: pointer; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem 1rem 1rem; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: var(--white); opacity: 0; transition: opacity 0.4s; }
+        .gallery-item:hover .gallery-caption { opacity: 1; }
+        .gallery-caption h3 { font-size: 0.9rem; font-family: 'Source Sans 3', sans-serif; font-weight: 500; }
+
+        .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; padding: 2rem; }
+        .lightbox.active { display: flex; }
+        .lightbox img { max-width: 90%; max-height: 90vh; }
+        .lightbox-close { position: absolute; top: 2rem; right: 2rem; background: none; border: none; color: var(--white); font-size: 2rem; cursor: pointer; }
+
+        .footer { background: var(--black); color: var(--white); padding: 5rem 3rem 2rem; }
+        .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; padding-bottom: 4rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .footer-brand .logo-text { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; letter-spacing: 0.1em; }
+        .footer-brand p { color: rgba(255,255,255,0.6); margin-top: 1rem; font-size: 0.95rem; }
+        .footer h4 { font-family: 'Source Sans 3', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; color: var(--gold); }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.95rem; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-bottom { max-width: 1400px; margin: 0 auto; padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+        .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
+        .footer-bottom a:hover { color: var(--white); }
+
+        @media (max-width: 1024px) {
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); }
+            .footer-content { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .nav-container { padding: 1rem 1.5rem; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); flex-direction: column; padding: 2rem; gap: 1.5rem; border-top: 1px solid var(--warm); }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+            .page-header { padding: 8rem 1.5rem 3rem; }
+            .page-header h1 { font-size: 2.4rem; }
+            .section { padding: 3rem 1.5rem; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo"><img src="wedulit-logo.jpg" alt="Wedulit"></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Start</a></li>
+                <li><a href="materialien.html">Materialien</a></li>
+                <li><a href="referenzen.html" class="active">Referenzen</a></li>
+                <li><a href="historie.html">Historie</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="page-header-content">
+            <span class="section-tag">Projektgalerie</span>
+            <h1>Referenzen</h1>
+            <p>Ein Bild sagt mehr als 1000 Worte. Hier finden Sie eine Auswahl unserer Kundenaufträge.</p>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Treppen & Stahlbau</h2>
+                <p>Passgenaue Treppen jeglicher Art. Im Außenbereich trotzen unsere Konstruktionen Witterungseinflüssen, im Innenbereich überzeugen sie mit zeitloser Eleganz.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://www.wedulit.de/uploads/pics/gisma1_01.jpg" alt="Stahltreppe">
+                    <div class="gallery-caption"><h3>Stahltreppe</h3></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://www.wedulit.de/uploads/pics/KLEUSBERG013.jpg" alt="Gewerbebau">
+                    <div class="gallery-caption"><h3>Gewerbebau</h3></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://www.wedulit.de/uploads/pics/IMG0195A.jpg" alt="Innentreppe">
+                    <div class="gallery-caption"><h3>Innentreppe</h3></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://www.wedulit.de/uploads/pics/schellhorn4.jpg" alt="Außentreppe">
+                    <div class="gallery-caption"><h3>Außentreppe</h3></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://www.wedulit.de/typo3temp/pics/Stahltreppe_mit_Nero_Impalabelag_23e5a88c32.jpg" alt="Nero Impala">
+                    <div class="gallery-caption"><h3>Nero Impala Belag</h3></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://www.wedulit.de/uploads/pics/Stahltreppe_mit_Granitstufen_China_Christal_und_Edelstahlgelaender_mit_parallellaufender_Fuellung.jpg" alt="China Cristall">
+                    <div class="gallery-caption"><h3>China Cristall</h3></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>Eingangspodeste</h2>
+                <p>Von Anfang an legen wir viel Wert auf die Gestaltung, damit Podest und Gebäude im Einklang stehen.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://www.wedulit.de/uploads/pics/Serizzio_Podest__Setzstufen_Emerald_Pearl.jpg" alt="Serizzo Podest">
+                    <div class="gallery-caption"><h3>Serizzo & Emerald Pearl</h3></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://www.wedulit.de/typo3temp/pics/Eingangspodest_Serizzio__Tritt_geflammt__Setzstufen_poliert_82a5b9cc1d.jpg" alt="Serizzo geflammt">
+                    <div class="gallery-caption"><h3>Serizzo geflammt/poliert</h3></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://www.wedulit.de/uploads/pics/wedulit-eingangspodest-1.jpg" alt="Eingangspodest">
+                    <div class="gallery-caption"><h3>Eingangspodest</h3></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://www.wedulit.de/uploads/pics/wedulit-eingangspodest-2.jpg" alt="Eingangspodest">
+                    <div class="gallery-caption"><h3>Eingangspodest</h3></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://www.wedulit.de/uploads/pics/wedulit-eingangspodest-3.jpg" alt="Eingangspodest">
+                    <div class="gallery-caption"><h3>Eingangspodest</h3></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://www.wedulit.de/uploads/pics/wedulit-eingangspodest-4.jpg" alt="Eingangspodest">
+                    <div class="gallery-caption"><h3>Eingangspodest</h3></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Küchen & Tresen</h2>
+                <p>Widerstandsfähig und elegant – Hartgestein und Quarz erfreuen sich im Küchenbereich immer größerer Beliebtheit.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://www.wedulit.de/uploads/pics/kueche-1-ansicht.jpg" alt="Küche">
+                    <div class="gallery-caption"><h3>Küchenansicht</h3></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://www.wedulit.de/uploads/pics/Arbeitsplatte_Kashmir_White_4_cm_1.jpg" alt="Kashmir White">
+                    <div class="gallery-caption"><h3>Kashmir White</h3></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://www.wedulit.de/typo3temp/pics/Emerald_Pearl_Kuechenarbeitsplatte_66470d3cc1.jpg" alt="Emerald Pearl">
+                    <div class="gallery-caption"><h3>Emerald Pearl</h3></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://www.wedulit.de/uploads/pics/Kashmir_white-Arbeitsplatte_4_cm__Unterbaubecken_und_Ablaufrillen_1.jpg" alt="Kashmir White Detail">
+                    <div class="gallery-caption"><h3>Kashmir White mit Unterbaubecken</h3></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://www.wedulit.de/typo3temp/pics/Steel_grey__a82e42b1ae.jpg" alt="Steel Grey">
+                    <div class="gallery-caption"><h3>Steel Grey</h3></div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://www.wedulit.de/typo3temp/pics/Emerald_Pearl_6_5652011fe0.jpeg" alt="Emerald Pearl">
+                    <div class="gallery-caption"><h3>Emerald Pearl</h3></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">×</button>
+        <img src="" alt="">
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo-text">WEDULIT</div>
+                <p>Ihr Partner für Naturstein- und Stahlbau seit 1966.</p>
+            </div>
+            <div>
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Startseite</a></li>
+                    <li><a href="materialien.html">Materialien</a></li>
+                    <li><a href="referenzen.html">Referenzen</a></li>
+                    <li><a href="historie.html">Historie</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Kontakt</h4>
+                <ul class="footer-links">
+                    <li><a href="kontakt.html">Kontaktformular</a></li>
+                    <li><a href="anfahrt.html">Anfahrt</a></li>
+                    <li><a href="tel:+4943218031">04321 / 8031</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Rechtliches</h4>
+                <ul class="footer-links">
+                    <li><a href="agb.html">AGB</a></li>
+                    <li><a href="impressum.html">Impressum</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Wedulit Natursteinhandel</p>
+            <p><a href="impressum.html">Impressum</a> · <a href="agb.html">AGB</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
+        window.addEventListener('scroll', () => { document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50); });
+        function openLightbox(el) {
+            const lb = document.getElementById('lightbox');
+            lb.querySelector('img').src = el.querySelector('img').src;
+            lb.classList.add('active');
+        }
+        function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
+        document.getElementById('lightbox').addEventListener('click', e => { if (e.target === e.currentTarget) closeLightbox(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+    </script>
+</body>
+</html>

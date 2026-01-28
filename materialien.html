@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materialien - Wedulit Natursteinhandel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --stone: #4a4a4a; --stone-light: #6b6b6b; --cream: #f5f3ef;
+            --warm: #e8e4dc; --gold: #b8956c; --gold-dark: #9a7a55;
+            --white: #ffffff; --black: #1a1a1a;
+        }
+        body { font-family: 'Source Sans 3', sans-serif; line-height: 1.7; color: var(--stone); background: var(--white); }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 500; letter-spacing: -0.02em; }
+        
+        .navbar { position: fixed; top: 0; left: 0; right: 0; background: var(--white); z-index: 1000; }
+        .navbar.scrolled { box-shadow: 0 1px 0 rgba(0,0,0,0.08); }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 1.2rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; text-decoration: none; }
+        .logo img { height: 45px; }
+        .nav-links { display: flex; gap: 3rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: var(--stone); font-size: 0.9rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .mobile-menu-btn span { display: block; width: 24px; height: 2px; background: var(--stone); margin: 6px 0; }
+
+        .page-header { padding: 10rem 3rem 5rem; background: var(--cream); }
+        .page-header-content { max-width: 1400px; margin: 0 auto; }
+        .page-header .section-tag { display: inline-block; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+        .page-header h1 { font-size: 3.2rem; margin-bottom: 1rem; color: var(--black); }
+        .page-header p { font-size: 1.15rem; color: var(--stone-light); max-width: 600px; }
+
+        .section { padding: 5rem 3rem; }
+        .section-alt { background: var(--cream); }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .section-header { margin-bottom: 3rem; }
+        .section-header h2 { font-size: 2.2rem; margin-bottom: 0.5rem; }
+        .section-header p { color: var(--stone-light); }
+
+        .stone-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; }
+        .stone-card { background: var(--white); border: 1px solid var(--warm); transition: all 0.3s; overflow: hidden; }
+        .stone-card:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+        .stone-image { aspect-ratio: 1; background: linear-gradient(135deg, var(--warm), var(--cream)); display: flex; align-items: center; justify-content: center; font-size: 2rem; color: var(--stone-light); overflow: hidden; }
+        .stone-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+        .stone-card:hover .stone-image img { transform: scale(1.05); }
+        .stone-card h3 { padding: 1rem; text-align: center; font-size: 0.9rem; font-family: 'Source Sans 3', sans-serif; font-weight: 500; color: var(--stone); }
+
+        .partner-section { padding: 4rem 3rem; background: var(--stone); color: var(--white); text-align: center; }
+        .partner-section p { max-width: 700px; margin: 0 auto 2rem; color: rgba(255,255,255,0.8); }
+        .partner-link { display: inline-block; padding: 1rem 2.5rem; background: var(--gold); color: var(--white); text-decoration: none; font-weight: 600; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; transition: background 0.3s; }
+        .partner-link:hover { background: var(--gold-dark); }
+
+        .footer { background: var(--black); color: var(--white); padding: 5rem 3rem 2rem; }
+        .footer-content { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; padding-bottom: 4rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .footer-brand .logo-text { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; letter-spacing: 0.1em; }
+        .footer-brand p { color: rgba(255,255,255,0.6); margin-top: 1rem; font-size: 0.95rem; }
+        .footer h4 { font-family: 'Source Sans 3', sans-serif; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.5rem; color: var(--gold); }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 0.75rem; }
+        .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.95rem; transition: color 0.3s; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-bottom { max-width: 1400px; margin: 0 auto; padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.85rem; color: rgba(255,255,255,0.4); }
+        .footer-bottom a { color: rgba(255,255,255,0.4); text-decoration: none; }
+        .footer-bottom a:hover { color: var(--white); }
+
+        @media (max-width: 1024px) {
+            .stone-grid { grid-template-columns: repeat(3, 1fr); }
+            .footer-content { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .nav-container { padding: 1rem 1.5rem; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); flex-direction: column; padding: 2rem; gap: 1.5rem; border-top: 1px solid var(--warm); }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+            .page-header { padding: 8rem 1.5rem 3rem; }
+            .page-header h1 { font-size: 2.4rem; }
+            .section { padding: 3rem 1.5rem; }
+            .stone-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo"><img src="wedulit-logo.jpg" alt="Wedulit"></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Start</a></li>
+                <li><a href="materialien.html" class="active">Materialien</a></li>
+                <li><a href="referenzen.html">Referenzen</a></li>
+                <li><a href="historie.html">Historie</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="page-header-content">
+            <span class="section-tag">Werkstoffauswahl</span>
+            <h1>Materialien</h1>
+            <p>Mit einer umfassenden Auswahl an Werkstoffen können wir ganz individuell auf Ihre Wünsche eingehen. Entdecken Sie die Vielfältigkeit der Natur.</p>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Hartgestein</h2>
+                <p>Robuste und langlebige Granite für höchste Ansprüche</p>
+            </div>
+            <div class="stone-grid">
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/BalticBrown.jpg" alt="Baltic Brown"></div><h3>Baltic Brown</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/BiancoSardo.jpg" alt="Bianco Sardo"></div><h3>Bianco Sardo</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/BluePearl.jpg" alt="Blue Pearl"></div><h3>Blue Pearl</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/CarmenRed.jpg" alt="Carmen Red"></div><h3>Carmen Red</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/ChinaCristall.jpg" alt="China Cristall"></div><h3>China Cristall</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/EmeraldPearl.jpg" alt="Emerald Pearl"></div><h3>Emerald Pearl</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/JuparanaColombo.jpg" alt="Juparana Colombo"></div><h3>Juparana Colombo</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/KashmirWhite.jpg" alt="Kashmir White"></div><h3>Kashmir White</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/Multicolor.jpg" alt="Multicolor"></div><h3>Multicolor</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/NeroAssoluto.jpg" alt="Nero Assoluto"></div><h3>Nero Assoluto</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/NeroImpala.jpg" alt="Nero Impala"></div><h3>Nero Impala</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/PadangDunkel.jpg" alt="Padang dunkel"></div><h3>Padang dunkel</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/PadangHell.jpg" alt="Padang hell"></div><h3>Padang hell</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/ParadisoBash.JPG" alt="Paradiso Bash"></div><h3>Paradiso Bash</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/RosaBeta.jpg" alt="Rosa Beta"></div><h3>Rosa Beta</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/RosaPorrino.jpg" alt="Rosa Porrino"></div><h3>Rosa Porrino</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/RosaSardoGhiandone.jpg" alt="Rosa Sardo"></div><h3>Rosa Sardo</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/RossoBalmoral.jpg" alt="Rosso Balmoral"></div><h3>Rosso Balmoral</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/Serizzo.jpg" alt="Serizzo"></div><h3>Serizzo</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/StarGalaxy.jpg" alt="Star Galaxy"></div><h3>Star Galaxy</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Hartgestein/YellowVeneziano.jpg" alt="Yellow Veneziano"></div><h3>Yellow Veneziano</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt">
+        <div class="container">
+            <div class="section-header">
+                <h2>Marmor</h2>
+                <p>Zeitlose Eleganz für exklusive Projekte</p>
+            </div>
+            <div class="stone-grid">
+                <div class="stone-card"><div class="stone-image">◇</div><h3>Agglo Marmor</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Marmor/BiancoCarrara.jpg" alt="Bianco Carrara"></div><h3>Bianco Carrara</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Marmor/BrecciaAurora.jpg" alt="Breccia Aurora"></div><h3>Breccia Aurora</h3></div>
+                <div class="stone-card"><div class="stone-image">◇</div><h3>Carrara Mikrokorn</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Marmor/Estremoz.jpg" alt="Estremoz"></div><h3>Estremoz</h3></div>
+                <div class="stone-card"><div class="stone-image">◇</div><h3>Jura Marmor</h3></div>
+                <div class="stone-card"><div class="stone-image"><img src="Materialien/Marmor/PerlatoAppia.jpg" alt="Perlato Appia"></div><h3>Perlato Appia</h3></div>
+                <div class="stone-card"><div class="stone-image">◇</div><h3>White Iceberg</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="partner-section">
+        <div class="container">
+            <h2 style="font-size: 2rem; margin-bottom: 1rem;">Viele Sorten auf Lager</h2>
+            <p>Das Bildmaterial wurde mit freundlicher Unterstützung unseres Zulieferers zur Verfügung gestellt. Das gesamte Lieferprogramm finden Sie bei unserem Partner Magnastein.</p>
+            <a href="http://www.magnastein.com/" class="partner-link" target="_blank">Zum Lieferprogramm</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo-text">WEDULIT</div>
+                <p>Ihr Partner für Naturstein- und Stahlbau seit 1966.</p>
+            </div>
+            <div>
+                <h4>Navigation</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Startseite</a></li>
+                    <li><a href="materialien.html">Materialien</a></li>
+                    <li><a href="referenzen.html">Referenzen</a></li>
+                    <li><a href="historie.html">Historie</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Kontakt</h4>
+                <ul class="footer-links">
+                    <li><a href="kontakt.html">Kontaktformular</a></li>
+                    <li><a href="anfahrt.html">Anfahrt</a></li>
+                    <li><a href="tel:+4943218031">04321 / 8031</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Rechtliches</h4>
+                <ul class="footer-links">
+                    <li><a href="agb.html">AGB</a></li>
+                    <li><a href="impressum.html">Impressum</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Wedulit Natursteinhandel</p>
+            <p><a href="impressum.html">Impressum</a> · <a href="agb.html">AGB</a></p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() { document.querySelector('.nav-links').classList.toggle('active'); }
+        window.addEventListener('scroll', () => { document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50); });
+    </script>
+</body>
+</html>
